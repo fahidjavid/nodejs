@@ -20,6 +20,14 @@ var _data = require('./lib/data');
 //     console.log('This was the error: ', err, ' and this was the data ', data);
 // });
 
+// _data.update('test','newFile',{'Last Name':'Javid'}, function (err) {
+//     console.log('This was the error: ', err);
+// });
+
+_data.delete('test','newFile', function (err) {
+    console.log('This was the error: ', err);
+});
+
 // Instantiate the HTTP server
 var httpServer = http.createServer(function (req, res) {
     unifiedServer(req, res);

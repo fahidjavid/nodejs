@@ -53,13 +53,13 @@ lib.read = function (dir, file, callback) {
 // Update data inside a file
 lib.update = function (dir, file, data, callback) {
     // Open the file for writing
-    fs.open(lib.baseDir + dir + file + '.json', 'r+', function (err, fileDescriptor) {
+    fs.open(lib.baseDir + dir + '/' + file + '.json', 'r+', function (err, fileDescriptor) {
         if (!err && fileDescriptor) {
             // Convert data to string
-            var stringData = JSON.stringfy(data);
+            var stringData = JSON.stringify(data);
 
             // Truncate the file
-            fs.truncate(fileDescriptor, function (err) {
+            fs.ftruncate(fileDescriptor, function (err) {
                 if (!err) {
                     // Write to the file and close it
                     fs.writeFile(fileDescriptor, stringData, function (err) {
@@ -81,6 +81,18 @@ lib.update = function (dir, file, data, callback) {
             });
         } else {
             callback('Could not open the file for updating, it may not exists yet');
+        }
+    });
+};
+
+// Delete a file
+lib.delete = function (dir, file, callback) {
+    // Unlink the file
+    fs.unlink(lib.baseDir + dir + '/' + file + '.json', function (err) {
+        if (!err) {
+            callback(false);
+        } else {
+            callback('Error deleting file');
         }
     });
 };
