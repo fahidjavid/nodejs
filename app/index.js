@@ -12,9 +12,13 @@ var config = require('./config');
 var fs = require('fs');
 var _data = require('./lib/data');
 
-_data.create('test','newFile', {'Name' : 'Fahid'}, function (err) {
-   console.log('This was the error: ', err);
-});
+// _data.create('test','newFile', {'Name' : 'Fahid'}, function (err) {
+//    console.log('This was the error: ', err);
+// });
+
+// _data.read('test','newFile', function (err, data) {
+//     console.log('This was the error: ', err, ' and this was the data ', data);
+// });
 
 // Instantiate the HTTP server
 var httpServer = http.createServer(function (req, res) {
